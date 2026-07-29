@@ -1,0 +1,36 @@
+name: Validate
+
+on:
+  pull_request:
+    paths:
+      - "**/*.md"
+      - "**/*.json"
+      - "scripts/**"
+      - ".github/workflows/validate.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "**/*.md"
+      - "**/*.json"
+      - "scripts/**"
+      - ".github/workflows/validate.yml"
+
+concurrency:
+  group: expert-intelligence-validate-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm run validate

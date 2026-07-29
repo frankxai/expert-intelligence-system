@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.DS_Store
+Thumbs.db
+
+# Keep source material and working memory private by default.
+private/
+corpus/
+work/private/
+*.local.md
+*.private.md
+.env*
+!.env.example

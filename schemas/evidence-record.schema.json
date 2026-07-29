@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frankx.ai/schemas/expert-intelligence/evidence-record.schema.json",
+  "title": "Evidence Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "claim_id",
+    "claim",
+    "status",
+    "scope",
+    "sources",
+    "last_checked",
+    "owner"
+  ],
+  "properties": {
+    "claim_id": {
+      "type": "string",
+      "pattern": "^E-[0-9]{3,}$"
+    },
+    "claim": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "supported",
+        "contested",
+        "practitioner-derived",
+        "anecdotal",
+        "hypothesis",
+        "metaphor"
+      ]
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "reference",
+          "reviewed"
+        ],
+        "properties": {
+          "reference": {
+            "type": "string"
+          },
+          "reviewed": {
+            "type": "boolean"
+          },
+          "retrieved_at": {
+            "type": "string",
+            "format": "date"
+          },
+          "rights": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "counter_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "last_checked": {
+      "type": "string",
+      "format": "date"
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 1
+    },
+    "qualified_review_required": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

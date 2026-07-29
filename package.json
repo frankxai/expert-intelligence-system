@@ -1,0 +1,14 @@
+{
+  "name": "expert-intelligence-system",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Turn your life's work into an intelligence system you own.",
+  "license": "MIT",
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "pack:starter": "node scripts/package-starter.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
